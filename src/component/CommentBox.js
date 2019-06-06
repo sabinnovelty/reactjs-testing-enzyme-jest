@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect } from 'react-redux'
+import {connect } from 'react-redux';
+import { saveComment } from './actions/index'
 
 
  class CommentBox extends Component {
@@ -13,13 +14,13 @@ import {connect } from 'react-redux'
   }
 
   handleTextArea( event ){
-    console.log(this)
     this.setState({comment:event.target.value})
   }
 
   handleSubmit( event ){
     event.preventDefault();
     this.setState({comment:''})
+    this.props.saveComment(this.state.comment);
   }
 
   render() {
@@ -35,5 +36,9 @@ import {connect } from 'react-redux'
   }
 }
 
-
-export default connect(null,null)(CommentBox)
+const mapDispatchToProps = dispatch=>{
+  return {
+    saveComment:( comment )=>dispatch(saveComment(comment))
+  }
+}
+export default connect(null,mapDispatchToProps)(CommentBox)

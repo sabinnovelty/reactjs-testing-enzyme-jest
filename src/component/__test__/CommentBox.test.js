@@ -39,9 +39,9 @@ describe('text area', () => {
     wrapper.find('textarea').simulate('change', {
       target: { value: 'new comment' }
     })
-    wrapper.update()
+    // wrapper.update()
     wrapper.find('form').simulate('submit')
-    // wrapper.update();
+     wrapper.update();
     expect(wrapper.find('textarea').prop('value')).toEqual('')
   })
 })
